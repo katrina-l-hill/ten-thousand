@@ -1,4 +1,4 @@
-from distutils.sysconfig import get_makefile_filename
+from sysconfig import get_makefile_filename
 import random
 from random import randint, sample
 from collections import Counter
