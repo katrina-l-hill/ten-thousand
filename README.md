@@ -3,6 +3,7 @@
 # Project: Ten Thousand
 
 ### Author: Roger Wells and Katrina Hill
+- 4/26/22: Roger Wells, Katrina Hill, Benjamin Carter, Harvey Francois
 
 The purpose of this team project is to create command line version of the dice game Ten Thousand. The Random module is used to roll virtual dice. We created logic in calculations.py to tally up scores, and then we created a virtual opponent for players to face off against!
 
