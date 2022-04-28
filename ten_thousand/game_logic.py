@@ -9,6 +9,20 @@ class GameLogic:
         pass
 
     @staticmethod
+    def validate_keepers(roll, user_input):
+        just_numbers = roll.replace(" ", "")
+        numbers_list = [int(char) for char in just_numbers]
+        input_list = [int(char) for char in user_input if char.isdigit()]
+        for char in input_list:
+            input_count = input_list.count(char)
+            roll_count = numbers_list.count(char)
+            if input_count > roll_count:
+                print("Cheater!!! Or possibly made a typo...")
+                return False
+            else:
+                return True
+
+    @staticmethod
     def roll_dice(num_dice):
         return tuple(randint(1, 6) for _ in range(0, num_dice))
 
@@ -56,5 +70,3 @@ class GameLogic:
                 score += i * 400
 
         return score
-
-
