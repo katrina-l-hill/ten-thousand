@@ -43,34 +43,13 @@ class Game:
             print("(r)oll again, (b)ank your points or (q)uit:")
             response = input("> ")
 
-            # renamed from dice_to_keep because it's what they're requesting to keep, not what's being kept
-            # dice_requested = [int(x) for x in str(response)]
-            # # assigned empty tuple to variable for dice being kept
-            # dice_to_keep = tuple()
-            # for loop for dice requested to keep, remove from list of dice, and start another round
-            # for dice in dice_requested:
-            #     if dice in roll:
-            #         dice_to_keep += dice
-            #         roll.remove(dice)
-
             if input_is_valid is False:
                 print("Cheater!!! Or possibly made a typo....")
                 # need to show user the same roll numbers they rolled prior to being a cheater
                 print(f"*** {roll_input} ***")
                 print("Enter dice to keep, or (q)uit:")
                 response = input("> ")
-                is_cheater = GameLogic.validate_keepers(roll_input, response)
-
-            # else:
-
-            #     # calling function to start another round
-            #     self.rounds(local_total, local_total, round_num, die, roller)
-            # #     return
-            # # die = die - len(dice_to_keep)
-            # # local_total += GameLogic.calculate_score(tuple(dice_to_keep))
-            # # print(f"You have {local_total} unbanked points and {die} dice remaining")
-            # # print("(r)oll again, (b)ank your points or (q)uit:")
-            # # response = input("> ")
+                input_is_valid = GameLogic.validate_keepers(roll_input, response)
 
             elif response == "r":
                 self.rounds(local_total, local_total, round_num, die, roller)
@@ -89,8 +68,8 @@ class Game:
                 sys.exit()
 
         # handle zilch to check
-        zilch_points = [int(x) for x in str(roll)]
-        check_for_zilch = GameLogic.calculate_score(tuple(zilch_points))
+        dice_to_keep = [int(x) for x in str(response)]
+        check_for_zilch = GameLogic.calculate_score(tuple(dice_to_keep))
         if check_for_zilch == 0:
             self.bank.clear_shelf()
             # round is over
