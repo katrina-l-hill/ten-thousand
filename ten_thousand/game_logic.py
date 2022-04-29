@@ -10,12 +10,10 @@ class GameLogic:
 
     @staticmethod
     def validate_keepers(roll, user_input):
-        just_numbers = roll.replace(" ", "")
-        numbers_list = [int(char) for char in just_numbers]
-        input_list = [int(char) for char in user_input if char.isdigit()]
-        for char in input_list:
-            input_count = input_list.count(char)
-            roll_count = numbers_list.count(char)
+
+        for char in user_input:
+            input_count = user_input.count(char)
+            roll_count = roll.count(char)
             if input_count > roll_count:
                 print("Cheater!!! Or possibly made a typo...")
                 return False
