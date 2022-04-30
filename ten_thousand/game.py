@@ -12,7 +12,7 @@ class Game:
         self.round_num = 0
 
     def play(self, roller=GameLogic.roll_dice):
-        """Entry point for playing the game"""
+        """starts the game"""
         self.roller = roller
 
         self.welcome()
@@ -30,7 +30,7 @@ class Game:
 
 
     def start_round(self):
-        """print the start of the round"""
+        """starts the round"""
         print(f"Starting round {self.round_num}")
 
     def end_round(self):
@@ -77,6 +77,7 @@ class Game:
                 return
 
     def game_over(self):
+        """closes the game"""
         print(f"Thanks for playing. You earned {self.bank.balance} points")
         sys.exit()
 
@@ -110,7 +111,7 @@ class Game:
         return keeper_values
 
     def validate_keepers(self, roll):  # borrowed from JB Tellez
-        """ensures that kept dice are valid for the roll. Eventually return valid keepers or quits"""
+        """validated the kept dice"""
         while True:
             print("Enter dice to keep, or (q)uit:")
             response = input("> ")
