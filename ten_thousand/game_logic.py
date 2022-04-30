@@ -68,3 +68,19 @@ class GameLogic:
                 score += i * 400
 
         return score
+
+    @staticmethod
+    def get_scorers(dice):
+        scoring_dice = GameLogic.calculate_score(dice)
+        if scoring_dice == 0:
+            return tuple()
+        scorers = []
+        for i, val in enumerate(dice):
+            sub_roll = dice[:i] + dice[i + 1:]
+            sub_score = GameLogic.calculate_score(sub_roll)
+            if sub_score != scoring_dice:
+                scorers.append(val)
+        return tuple(scorers)
+
+
+
