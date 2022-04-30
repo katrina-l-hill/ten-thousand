@@ -76,7 +76,58 @@ class Game:
             elif response == "b":
                 return
 
-   
+    def game_over(self):
+        print(f"Thanks for playing. You earned {self.bank.balance} points")
+        sys.exit()
+
+    def dice_roll(self, num_of_dice):
+        print(f"Rolling {num_of_dice} dice...")
+        roll = self.roller(num_of_dice)
+        formatted_roll = self.format_roll(roll)
+        print(formatted_roll)
+        return roll
+
+    def format_roll(self, roll):
+        roll_input = " ".join(map(str, roll))  # format the roll
+        return f"*** {roll_input} ***"
+
+    def check_zilch(self, roll):
+        return GameLogic.calculate_score(roll) == 0
+
+    def zilch_is_yes(self):
+        """print zilch method and clear the score"""
+        self.bank.clear_shelf()
+
+        print("****************************************")
+        print("**        Zilch!!! Round over         **")
+        print("****************************************")
+
+    def collect_keepers(self, roll):  # borrowed from JB Tellez
+        """set the dice to keep"""
+        keeper_values = self.validate_keepers(roll)
+        points_for_current_roll = GameLogic.calculate_score(keeper_values)
+        self.bank.shelf(points_for_current_roll)
+        return keeper_values
+
+    def validate_keepers(self, roll):  # borrowed from JB Tellez
+        """ensures that kept dice are valid for the roll. Eventually return valid keepers or quits"""
+        while True:
+            print("Enter dice to keep, or (q)uit:")
+            response = input("> ")
+            if response == "q":
+                self.game_over()
+
+            keeper_values = []
+            for char in response:
+                if char.isnumeric():
+                    keeper_values.append(int(char))
+
+            if GameLogic.validate_keepers(roll, keeper_values):
+                return keeper_values
+            else:
+
+                print(self.format_roll(roll))
+
 
 if __name__ == "__main__":
     game = Game()
