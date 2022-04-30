@@ -13,6 +13,15 @@ class Game:
     round_num = 0
     die = 6
 
+    def welcome(self):
+        print("Welcome to Ten Thousand")
+        print("(y)es to play or (n)o to decline")
+        response = input("> ")
+
+        if response == "n":
+            print("OK. Maybe another time")
+            sys.exit()
+
     @staticmethod
     def check_for_zilch(keepers):
         if GameLogic.calculate_score(tuple(keepers)) == 0:
@@ -78,7 +87,7 @@ class Game:
                                         print(f"*** {roll_input} ***")
                                         print("Enter dice to keep, or (q)uit:")
                                         response = input("> ")
-                                        if die = 0:
+                                        if die == 0:
                                         ## need to say game over if dice is 0
 
 
@@ -92,8 +101,7 @@ class Game:
                                 self.play()
 
                             elif response == "q":
-                                print(f"Thanks for playing. You earned {self.bank.balance} points")
-                                sys.exit()
+                                self.game_over()
 
     def play(self, roller=GameLogic.roll_dice):
 
@@ -116,6 +124,7 @@ class Game:
 
     @staticmethod
     def zilch_is_yes(round_num, total):
+        Banker.clear_shelf()
         print(
             """
     ****************************************
@@ -128,8 +137,12 @@ class Game:
         print(f"Total score is {total} points")
         return
 
-    @staticmethod
-    def game_over():
+
+    def game_over(self):
+        print(f"Thanks for playing. You earned {self.bank.balance} points")
+        sys.exit()
+
+
 
 if __name__ == "__main__":
     game = Game()
