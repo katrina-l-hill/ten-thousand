@@ -139,7 +139,7 @@ class NervousNellie(BaseBot):
 class LilHur(BaseBot):
     def _roll_bank_or_quit(self):
         """your logic here"""
-        if 
+        if
         return "b"
 
     def _enter_dice(self):
