@@ -131,16 +131,19 @@ class BaseBot(ABC):
 
 class NervousNellie(BaseBot):
     """NervousNellie banks the first roll always"""
-
     def _roll_bank_or_quit(self):
         return "b"
 
 
-class LilHur(BaseBot):
+class HurricaneKatrina(BaseBot):
     def _roll_bank_or_quit(self):
         """your logic here"""
-        if
-        return "b"
+        if self.dice_remaining > 2:
+            return 'r'
+        elif self.unbanked_points < 300:
+            return 'r'
+        else:
+            return "b"
 
     def _enter_dice(self):
         """simulate user entering which dice to keep.
@@ -152,4 +155,4 @@ class LilHur(BaseBot):
 if __name__ == "__main__":
     num_games = 100
     NervousNellie.play(num_games)
-    YourBot.play(num_games)
+    HurricaneKatrina.play(num_games)
